@@ -6,6 +6,7 @@ import (
 	"io"
 	"math/rand"
 	"net"
+	"os"
 	"os/exec"
 	"strings"
 	"sync"
@@ -24,14 +25,21 @@ var remote struct {
 	mu    sync.Mutex
 }
 
+func i3cmd() string {
+	if sway := os.Getenv("SWAYSOCK"); sway != "" {
+		return "sway"
+	}
+	return "i3"
+}
+
 func getIPCSocket(updateSocketPath bool) (*socket, net.Conn, error) {
 	remote.mu.Lock()
 	defer remote.mu.Unlock()
 	path := remote.path
 	if updateSocketPath || remote.path == "" {
-		out, err := exec.Command("i3", "--get-socketpath").CombinedOutput()
+		out, err := exec.Command(i3cmd(), "--get-socketpath").CombinedOutput()
 		if err != nil {
-			return nil, nil, fmt.Errorf("getting i3 socketpath: %v (output: %s)", err, out)
+			return nil, nil, fmt.Errorf("getting %s socketpath: %v (output: %s)", i3cmd(), err, out)
 		}
 		path = strings.TrimSpace(string(out))
 	}
@@ -68,17 +76,17 @@ const (
 )
 
 var messageAtLeast = map[messageType]majorMinor{
-	messageTypeRunCommand:      {4, 0},
-	messageTypeGetWorkspaces:   {4, 0},
-	messageTypeSubscribe:       {4, 0},
-	messageTypeGetOutputs:      {4, 0},
-	messageTypeGetTree:         {4, 0},
-	messageTypeGetMarks:        {4, 1},
-	messageTypeGetBarConfig:    {4, 1},
-	messageTypeGetVersion:      {4, 3},
-	messageTypeGetBindingModes: {4, 13},
-	messageTypeGetConfig:       {4, 14},
-	messageTypeSendTick:        {4, 15},
+	messageTypeRunCommand:      {5, 0},
+	messageTypeGetWorkspaces:   {5, 0},
+	messageTypeSubscribe:       {5, 0},
+	messageTypeGetOutputs:      {5, 0},
+	messageTypeGetTree:         {5, 0},
+	messageTypeGetMarks:        {5, 0},
+	messageTypeGetBarConfig:    {5, 0},
+	messageTypeGetVersion:      {5, 0},
+	messageTypeGetBindingModes: {5, 0},
+	messageTypeGetConfig:       {5, 0},
+	messageTypeSendTick:        {5, 0},
 }
 
 const (
