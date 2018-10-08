@@ -48,7 +48,7 @@ func AtLeast(major int64, minor int64) error {
 			return err
 		}
 	}
-	if version.Major == major && version.Minor >= minor {
+	if version.Major >= major && version.Minor >= minor {
 		return nil
 	}
 
