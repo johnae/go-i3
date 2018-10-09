@@ -2,7 +2,6 @@ package i3
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // Version describes an i3 version.
@@ -38,19 +37,20 @@ var version Version
 // version is at least minor or newer. Otherwise, it returns an error message
 // stating i3 is too old.
 func AtLeast(major int64, minor int64) error {
-	if major == 0 {
-		return fmt.Errorf("BUG: major == 0 is non-sensical. Is a lookup table entry missing?")
-	}
-	if version.Major == 0 {
-		var err error
-		version, err = GetVersion()
-		if err != nil {
-			return err
-		}
-	}
-	if version.Major >= major && version.Minor >= minor {
-		return nil
-	}
+	return nil
+	// if major == 0 {
+	// 	return fmt.Errorf("BUG: major == 0 is non-sensical. Is a lookup table entry missing?")
+	// }
+	// if version.Major == 0 {
+	// 	var err error
+	// 	version, err = GetVersion()
+	// 	if err != nil {
+	// 		return err
+	// 	}
+	// }
+	// if version.Major >= major && version.Minor >= minor {
+	// 	return nil
+	// }
 
-	return fmt.Errorf("i3 version too old: got %d.%d, want ≥ %d.%d", version.Major, version.Minor, major, minor)
+	// return fmt.Errorf("i3 version too old: got %d.%d, want ≥ %d.%d", version.Major, version.Minor, major, minor)
 }
