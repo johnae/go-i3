@@ -76,17 +76,17 @@ const (
 )
 
 var messageAtLeast = map[messageType]majorMinor{
-	messageTypeRunCommand:      {5, 0},
-	messageTypeGetWorkspaces:   {5, 0},
-	messageTypeSubscribe:       {5, 0},
-	messageTypeGetOutputs:      {5, 0},
-	messageTypeGetTree:         {5, 0},
-	messageTypeGetMarks:        {5, 0},
-	messageTypeGetBarConfig:    {5, 0},
-	messageTypeGetVersion:      {5, 0},
-	messageTypeGetBindingModes: {5, 0},
-	messageTypeGetConfig:       {5, 0},
-	messageTypeSendTick:        {5, 0},
+	messageTypeRunCommand:      {4, 0},
+	messageTypeGetWorkspaces:   {4, 0},
+	messageTypeSubscribe:       {4, 0},
+	messageTypeGetOutputs:      {4, 0},
+	messageTypeGetTree:         {4, 0},
+	messageTypeGetMarks:        {4, 0},
+	messageTypeGetBarConfig:    {4, 0},
+	messageTypeGetVersion:      {4, 0},
+	messageTypeGetBindingModes: {4, 0},
+	messageTypeGetConfig:       {4, 0},
+	messageTypeSendTick:        {4, 0},
 }
 
 const (

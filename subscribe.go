@@ -258,14 +258,14 @@ type majorMinor struct {
 }
 
 var eventAtLeast = map[EventType]majorMinor{
-	WorkspaceEventType:       {5, 0},
-	OutputEventType:          {5, 0},
-	ModeEventType:            {5, 0},
-	WindowEventType:          {5, 0},
-	BarconfigUpdateEventType: {5, 0},
-	BindingEventType:         {5, 0},
-	ShutdownEventType:        {5, 0},
-	TickEventType:            {5, 0},
+	WorkspaceEventType:       {4, 0},
+	OutputEventType:          {4, 0},
+	ModeEventType:            {4, 0},
+	WindowEventType:          {4, 0},
+	BarconfigUpdateEventType: {4, 0},
+	BindingEventType:         {4, 0},
+	ShutdownEventType:        {4, 0},
+	TickEventType:            {4, 0},
 }
 
 // Subscribe returns an EventReceiver for receiving events of the specified
